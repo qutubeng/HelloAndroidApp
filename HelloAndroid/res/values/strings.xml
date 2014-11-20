@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">SensorRecorder</string>
+    <string name="hello_world">SensorRecorder</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_hello_android">SensorRecorder</string>
+    <string name="Ori">Gyrometer i grader</string>
+    <string name="acc">Acceleration i m/s utan gravitationen</string>
+    <string name="button_start">Start</string>
+   	<string name="button_stopp">Stopp</string>
+    <string name="button_reset">Reset</string>
+    <string name="button_save">Save</string>
+    <string name="edit_savename">SaveName</string>
+
+</resources>

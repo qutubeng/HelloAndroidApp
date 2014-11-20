@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+    <TableRow>
+
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/acc" />
+
+	</TableRow>
+    
+	<TableRow>
+	<TextView
+		android:id="@+id/xcoor"
+		android:text="X Coordinate: "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	/>
+	</TableRow>
+
+	<TableRow>
+	<TextView
+		android:id="@+id/ycoor"
+		android:text="Y Coordinate: "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	/>
+	</TableRow>
+
+	<TableRow>
+	<TextView
+		android:id="@+id/zcoor"
+		android:text="Z Coordinate: "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	/>
+	</TableRow>
+	
+	 <TableRow>
+
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/Ori" />
+
+	</TableRow>
+	
+	<TableRow>
+	<TextView
+		android:id="@+id/xcoor2"
+		android:text="X Coordinate: "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	/>
+	</TableRow>
+
+	<TableRow>
+	<TextView
+		android:id="@+id/ycoor2"
+		android:text="Y Coordinate: "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	/>
+	</TableRow>
+
+	<TableRow>
+	<TextView
+		android:id="@+id/zcoor2"
+		android:text="Z Coordinate: "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	/>
+	</TableRow>
+	
+	<TableRow>
+	<TextView
+		android:id="@+id/timeSeconds"
+		android:text="No recording started yet."
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	/>
+	</TableRow>
+	
+	<TableRow>
+	<Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_start" 
+        android:onClick="startRecording" 
+        />
+	</TableRow>
+	
+	<TableRow>
+	<Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_stopp"
+        android:onClick="stoppRecording"
+         />
+	</TableRow>
+	
+	<TableRow>
+	<Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_reset"
+        android:onClick="resetRecording"
+         />
+	</TableRow>
+	
+		<TableRow>
+	<Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save"
+        android:onClick="saveRecording"
+         />
+	</TableRow>
+	
+	<TableRow>
+	<EditText android:id="@+id/edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_savename" 
+        />
+		
+		</TableRow>
+
+</TableLayout>
