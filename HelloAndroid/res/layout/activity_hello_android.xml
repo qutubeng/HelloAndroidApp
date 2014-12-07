@@ -1,133 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
     <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/acc" />
+    </TableRow>
 
-	<TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/acc" />
+    <TableRow>
+        <TextView
+            android:id="@+id/xcoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X Coordinate: " />
+    </TableRow>
 
-	</TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/ycoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y Coordinate: " />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/zcoor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z Coordinate: " />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Ori" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/xcoor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X Coordinate: " />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/ycoor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y Coordinate: " />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/zcoor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z Coordinate: " />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/timeSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No recording started yet." />
+    </TableRow>
+
+    <TableRow>
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:hint="@string/edit_savename" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="startRecording"
+            android:text="@string/button_start" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="stoppRecording"
+            android:text="@string/button_stopp" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="resetRecording"
+            android:text="@string/button_reset" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="saveRecording"
+            android:text="@string/button_save" />
+    </TableRow>
     
-	<TableRow>
-	<TextView
-		android:id="@+id/xcoor"
-		android:text="X Coordinate: "
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
-	</TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/testText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="test" />
 
-	<TableRow>
-	<TextView
-		android:id="@+id/ycoor"
-		android:text="Y Coordinate: "
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
-	</TableRow>
-
-	<TableRow>
-	<TextView
-		android:id="@+id/zcoor"
-		android:text="Z Coordinate: "
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
-	</TableRow>
-	
-	 <TableRow>
-
-	<TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/Ori" />
-
-	</TableRow>
-	
-	<TableRow>
-	<TextView
-		android:id="@+id/xcoor2"
-		android:text="X Coordinate: "
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
-	</TableRow>
-
-	<TableRow>
-	<TextView
-		android:id="@+id/ycoor2"
-		android:text="Y Coordinate: "
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
-	</TableRow>
-
-	<TableRow>
-	<TextView
-		android:id="@+id/zcoor2"
-		android:text="Z Coordinate: "
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
-	</TableRow>
-	
-	<TableRow>
-	<TextView
-		android:id="@+id/timeSeconds"
-		android:text="No recording started yet."
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
-	</TableRow>
-	
-	<TableRow>
-	<Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_start" 
-        android:onClick="startRecording" 
-        />
-	</TableRow>
-	
-	<TableRow>
-	<Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_stopp"
-        android:onClick="stoppRecording"
-         />
-	</TableRow>
-	
-	<TableRow>
-	<Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_reset"
-        android:onClick="resetRecording"
-         />
-	</TableRow>
-	
-		<TableRow>
-	<Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_save"
-        android:onClick="saveRecording"
-         />
-	</TableRow>
-	
-	<TableRow>
-	<EditText android:id="@+id/edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_savename" 
-        />
-		
-		</TableRow>
+    </TableRow>
 
 </TableLayout>

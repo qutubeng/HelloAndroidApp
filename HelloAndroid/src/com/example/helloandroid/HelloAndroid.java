@@ -12,15 +12,23 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class HelloAndroid extends Activity implements SensorEventListener {
+public class HelloAndroid extends Activity implements SensorEventListener, LocationListener {
 	private SensorManager sensorManager;
 	private SensorManager sensorManager2;
+	
+	private LocationManager locationManager;
+	private LocationListener locationListener;
+	private String provider;
 
 	TextView xCoor; // declare X axis object
 	TextView yCoor; // declare Y axis object
@@ -29,6 +37,8 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 	TextView xCoor2; // declare X axis object
 	TextView yCoor2; // declare Y axis object
 	TextView zCoor2; // declare Z axis object
+	
+	TextView testText;
 	
 	TextView timeSeconds; // declare a object to display seconds counter wile recording data
 	EditText editText;
@@ -44,7 +54,7 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 	private String filename = "";	//declare a String to hold the different wanted names of the files.
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState){
+	public void onCreate(Bundle savedInstanceState) {
 		
 		this.sensorData = new ArrayList<SensorData>();		// Create ArrayList type SensorData
 		
@@ -63,8 +73,7 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 		yCoor2=(TextView)findViewById(R.id.ycoor2); // create Y axis object
 		zCoor2=(TextView)findViewById(R.id.zcoor2); // create Z axis object
 		
-	
-		
+		testText = (TextView)findViewById(R.id.testText);
 		
 		
 		timeSeconds=(TextView)findViewById(R.id.timeSeconds);
@@ -80,6 +89,58 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 		sensorManager2.registerListener(this,
 				sensorManager2.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION),
 				SensorManager.SENSOR_DELAY_NORMAL);
+		
+		// Get the location manager
+	    locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	    // Define the criteria how to select the locatioin provider -> use
+	    // default
+	    Criteria criteria = new Criteria();
+	    provider = locationManager.getBestProvider(criteria, false);
+	    Location location = locationManager.getLastKnownLocation(provider);
+
+	    // Initialize the location fields
+	    if (location != null) {
+	        System.out.println("Provider " + provider + " has been selected.");
+	        int lat = (int) (location.getLatitude());
+	        int lng = (int) (location.getLongitude());
+	        testText.setText(String.valueOf(lat));
+	        //longitudeField.setText(String.valueOf(lng));
+	    } else {
+	    	testText.setText("Provider not available");
+	        //longitudeField.setText("Provider not available");
+	    }
+		
+		/*locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		locationListener = new LocationListener() {
+		    public void onLocationChanged(Location location) {
+		      // Called when a new location is found by the network location provider.
+		      //makeUseOfNewLocation(location);
+		    	
+		    	Location newLocation = location;
+		    	testText.setText("lat: " + newLocation.getLatitude());
+		    	newLocation.getLongitude();
+		    	
+		    }
+
+			public void onStatusChanged(String provider, int status,
+					Bundle extras) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void onProviderEnabled(String provider) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void onProviderDisabled(String provider) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
+		// Register the listener with the Location Manager to receive location updates
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);*/
 
 		/*	More sensor speeds
 		    SENSOR_DELAY_FASTEST	 0 microsecond delay 			 / get sensor data as fast as possible
@@ -92,13 +153,11 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 
 	}
 
-	public void onSensorChanged(SensorEvent event){
+	public void onSensorChanged(SensorEvent event) {
 			
-		
 			// check sensor type
-			if(event.sensor.getType()==Sensor.TYPE_LINEAR_ACCELERATION){
+			if(event.sensor.getType()==Sensor.TYPE_LINEAR_ACCELERATION) {
 	
-				
 				// assign directions
 				aX=event.values[0];
 				aY=event.values[1];
@@ -107,8 +166,6 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 				xCoor.setText("X: "+aX);
 				yCoor.setText("Y: "+aY);
 				zCoor.setText("Z: "+aZ);
-				
-				
 				
 			}
 			
@@ -121,12 +178,8 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 
 				xCoor2.setText("X: "+gX);
 				yCoor2.setText("Y: "+gY);
-				zCoor2.setText("Z: "+gZ);
-				
-			
+				zCoor2.setText("Z: "+gZ);			
 			}
-			
-			
 			
 			
 			if(recordData)	//if recordData is true start recording data.
@@ -140,6 +193,7 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 	
 	public void startRecording(View view) {
 		this.recordData = true;
+		//this.testText.setText("jgfgjg");
 	}
 	
 	public void stoppRecording(View view) {
@@ -147,20 +201,19 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 	}
 	
 	public void resetRecording(View view) {
-		if(this.recordData == false)	//You should not be able to reset if it's recording (only when it's stopped)
-		{
+		//You should not be able to reset if it's recording (only when it's stopped)
+		if(this.recordData == false) {
 			timeSeconds.setText("Seconds recorded: 0");
 			this.sensorData.clear();
 			this.nrOfSensorSamples = 0;
 		}
 	}
 	
-	public void saveRecording(View view) { 		//You should not be able to save if it's recording (only when it's stopped)
+	public void saveRecording(View view) {	//You should not be able to save if it's recording (only when it's stopped)
 		//Save the data stored in ArrayList
 		
 		
-		if(this.recordData == false && isExternalStorageWritable())	
-		{
+		if(this.recordData == false && isExternalStorageWritable())	{
 			// **** Start saving ****
 			editText = (EditText)findViewById(R.id.edit);
 		    this.filename = editText.getText().toString() + ".txt";
@@ -191,9 +244,7 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 			}
 			
 			editText.setText("");
-			editText.setHint("SaveName");
-			
-
+			editText.setHint("File Name");
 		}
 	}
 	
@@ -209,12 +260,32 @@ public class HelloAndroid extends Activity implements SensorEventListener {
 		
 		String allData = "Seconds \t Accelerometer \t\t\t\t\t Gyrometer";
 		
-		for(int i = 0; i < this.nrOfSensorSamples ; i++)
-		{
+		for(int i = 0; i < this.nrOfSensorSamples ; i++) {
 			allData = allData + " \r\n " + this.sensorData.get(i).toString();			
 		}
 		
 		return allData;
 	}
-	
+
+	public void onLocationChanged(Location location) {
+		int lat = (int) (location.getLatitude());
+	    int lng = (int) (location.getLongitude());
+	    testText.setText(String.valueOf(lat));
+		//testText.setText("latitute: " + loc.getLatitude());
+	}
+
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
 }
