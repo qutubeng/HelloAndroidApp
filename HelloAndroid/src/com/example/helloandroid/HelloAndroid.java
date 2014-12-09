@@ -86,6 +86,7 @@ public class HelloAndroid extends Activity implements SensorEventListener, Locat
 		
 		sensorManager2=(SensorManager)getSystemService(SENSOR_SERVICE);
 		// add listener. The listener will be HelloAndroid (this) class
+		
 		sensorManager2.registerListener(this,
 				sensorManager2.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION),
 				SensorManager.SENSOR_DELAY_NORMAL);
